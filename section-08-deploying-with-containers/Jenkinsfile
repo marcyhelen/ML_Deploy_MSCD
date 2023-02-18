@@ -7,15 +7,16 @@ pipeline {
                echo "Checkout code..."
             }
         }
-        stage('Build') {
+        stage('Hello') {
             steps {
-                echo "Building the code"
+                sh "python section-08-deploying-with-containers/hello.py"
             }
         }
         
-        stage ('Deploying'){
+        stage ('TOX-Train model..'){
             steps{
                 echo "Deploying to test env..."
+                sh "tox -e train"
             }
         }
         stage ('Deploying to prod'){
